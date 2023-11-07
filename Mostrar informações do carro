@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+
+class Carro {
+  String nomeCarro;
+  String modeloCarro;
+  int ano;
+
+  Carro(this.nomeCarro, this.modeloCarro, this.ano);
+
+  void acelerar() {
+    print('O $nomeCarro $modeloCarro está acelerando');
+  }
+
+  void frear() {
+    print('O $nomeCarro $modeloCarro está freando');
+  }
+}
+
+void main() {
+  Carro carro1 = Carro('Toyota', 'Corolla', 2022);
+  carro1.acelerar();
+  carro1.frear();
+
+  List<Carro> listaCarros = [carro1];
+
+  runApp(MaterialApp(
+    home: Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              height: 200,
+              child: ListView.builder(
+                itemCount: listaCarros.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                    title: Text(listaCarros[index].nomeCarro),
+                    subtitle: Text(listaCarros[index].modeloCarro),
+                    trailing: Text(listaCarros[index].ano.toString()),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  ));
+}
